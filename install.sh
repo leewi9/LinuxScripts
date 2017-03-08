@@ -1,11 +1,14 @@
 #!/bin/bash
 
-file="$HOME/.vimrc"
-
 #echo $HOME
-#echo $file
+#echo $PWD
 
-if [ -f "$file" ]
+if [ -f "$HOME/.vim/bundle/Vundle.vim" ]
+then
+git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
+fi
+
+if [ -f "$HOME/.vimrc" ]
 then
     #echo "$file already exists!"
     mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
@@ -13,6 +16,5 @@ then
 else
     #echo "$file not found, create link..."
 fi
-
 
 ln -s "$PWD/.vimrc" "$HOME/"
