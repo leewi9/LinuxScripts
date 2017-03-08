@@ -90,11 +90,4 @@ inoremap { {}<ESC>i
 
 inoremap < <><ESC>i
  
-??? 是不是在Terminal中的vim字体遵守Terminal的设置，所以这里虽然设置也貌似无效？
 
-" 在Linux下设置字体的命令是：
-set guifont=Courier\ 14
-" 而在Windows下则是：
-set guifont = Courier:h14
-" 当然，如果需要设置多个字体，则我们可以在各个字体之间添加逗号(,)来设置多个字体，如：
-set guifont = Courier\ New\ 12 , Arial\ 10
