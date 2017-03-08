@@ -81,13 +81,7 @@ set expandtab       " Expand TABs to spaces
 
 
 " 括号自动补全（加在vim配置文件末尾，但是似乎在大段拷贝时会产生很多多余的！！？？？ ）
-
-inoremap ( ()<ESC>i
-
-inoremap [ []<ESC>i
-
-inoremap { {}<ESC>i
-
-inoremap < <><ESC>i
- 
-
+inoremap (()<ESC>i
+inoremap [[]<ESC>i
+inoremap {{}<ESC>i
+inoremap <<><ESC>i
