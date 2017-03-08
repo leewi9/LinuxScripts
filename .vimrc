@@ -13,7 +13,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'c.vim'
+" Plugin 'c.vim'
 
 Plugin 'taglist.vim'
 
