@@ -3,7 +3,7 @@
 #echo $HOME
 #echo $PWD
 
-if [ -f "$HOME/.vim/bundle/Vundle.vim" ]
+if [ -s "$HOME/.vim/bundle/Vundle.vim" ]
 then
     #echo "Vundle already set!"
     echo
@@ -11,7 +11,7 @@ else
     sudo git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
 fi
 
-if [ -f "$HOME/.vimrc" ]
+if [ -s "$HOME/.vimrc" ]
 then
     #echo "$file already exists!"
     mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
