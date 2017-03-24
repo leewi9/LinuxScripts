@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo $HOME
-echo $PWD
+echo "-----> $HOME"
+echo "-----> $PWD"
 
 # 安装 php5.6
 echo "----> start installing php5.6 ..."
