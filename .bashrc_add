@@ -42,8 +42,10 @@ export TZ
 # Centos系统还需要安装中文语言包  yum -y groupinstall chinese-support
 # 如果SSH终端还是乱码，那么我们也需要对终端软件的编码进行设置。设置编码为UTF-8。
 export LANG='UTC-8'
+export LANGUAGE='en_US'
 # export LC_ALL='zh_CN.UTF-8'
-export LC_ALL='en_US.UTF-8'
+export LC_ALL="en_US.UTF-8"
+
 
 # echo 可能会导致 sftp 登录出错！！ Received message too long
 echo "/home/$USER/.bashrc"
