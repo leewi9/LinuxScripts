@@ -25,5 +25,5 @@ fi
 ln -s "$PWD/.vimrc" "$HOME/"
 
 ##### 处理用户配置文件 #####
-cat "$PWD/.bashrc_add" >> "$HOME/.bashrc"   # 多次执行？？
+cat "$PWD/.bashrc_add" >> "$HOME/.bashrc"   # TODO 避免多次执行
 source "$HOME/.bashrc"
