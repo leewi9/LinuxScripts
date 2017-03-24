@@ -3,6 +3,7 @@
 #echo $HOME
 #echo $PWD
 
+##### 处理vim配置文件 #####
 if [ -s "$HOME/.vim/bundle/Vundle.vim" ]
 then
     #echo "Vundle already set!"
@@ -22,3 +23,7 @@ else
 fi
 
 ln -s "$PWD/.vimrc" "$HOME/"
+
+##### 处理用户配置文件 #####
+cat "$PWD/.bashrc_add" >> "$HOME/.bashrc"
+source "$HOME/.bashrc"
