@@ -15,7 +15,6 @@ sudo apt-get install -y build-essential
 
 # 安装 composer
 echo "----> start installing composer ..."
-cd $HOME/ATOOLS
 sudo curl -sS https://getcomposer.org/installer | sudo php
 sudo mv composer.phar /usr/bin/composer
 sudo rm -f composer.phar 
