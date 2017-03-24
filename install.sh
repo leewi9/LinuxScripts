@@ -54,4 +54,7 @@ source "$HOME/.bashrc"
 #####
 sudo apt-get -y upgrade
 
+# TODO System Restart Required
+sudo reboot
+
 # TODO 验证要安装的是否确实都已经正确安装
