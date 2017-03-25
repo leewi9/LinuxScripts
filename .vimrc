@@ -63,7 +63,10 @@ set fencs=utf8,gbk,gb2312,gb18030
 "
 syntax on
 
-set nu
+"
+set nonu
+
+set paste
 
 " set smartindent     " autoindent、noautoindent
 
