@@ -3,6 +3,8 @@
 echo "-----> $HOME"
 echo "-----> $PWD"
 
+# 设置时区
+sudo timedatectl set-timezone Asia/Shanghai
 
 #
 sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
