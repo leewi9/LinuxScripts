@@ -7,7 +7,7 @@ echo "-----> $PWD"
 #
 sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
 sudo apt-add-repository ppa:nginx/stable -y
-sudo apt-get -y update && upgrade
+sudo apt-get -y update && sudo apt-get -y upgrade
 
 # 安装 php5.6
 echo "----> start installing php5.6 ..."
