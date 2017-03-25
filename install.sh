@@ -11,9 +11,11 @@ sudo timedatectl set-timezone Asia/Shanghai
 # Centos系统还需要安装中文语言包  yum -y groupinstall chinese-support
 # 如果SSH终端还是乱码，那么我们也需要对终端软件的编码进行设置。设置编码为UTF-8。
 sudo locale-gen en_US.UTF-8
-echo 'LANG="en_US.UTF-8"' | sudo tee --append /etc/default/locale > /dev/null
-echo 'LANGUAGE="en_US.UTF-8"' | sudo tee --append /etc/default/locale > /dev/null
-echo 'LC_ALL="en_US.UTF-8"' | sudo tee --append /etc/default/locale > /dev/null
+# echo 'LANG=en_US.UTF-8' | sudo tee --append /etc/default/locale > /dev/null
+# echo 'LANGUAGE=en_US.UTF-8' | sudo tee --append /etc/default/locale > /dev/null
+# echo 'LC_ALL=en_US.UTF-8' | sudo tee --append /etc/default/locale > /dev/null
+# 上面3句可以用下面来实现
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
 
 #
 sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
