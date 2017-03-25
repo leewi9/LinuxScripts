@@ -5,9 +5,9 @@ su leewi9
 cd ~
 
 #
-mkdir ATOOLS
-mkdir AONLINE
-mkdir ALOGS
+mkdir A_TOOLS
+mkdir A_ONLINE
+mkdir A_LOGS
 
 
 # 修改hostname
