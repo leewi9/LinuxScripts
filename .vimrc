@@ -65,7 +65,7 @@ syntax on
 
 set nu
 
-set smartindent     " autoindent、noautoindent
+" set smartindent     " autoindent、noautoindent
 
 
 set tabstop=4       " The width of a TAB is set to 4.
