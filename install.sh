@@ -30,6 +30,7 @@ sudo apt-get -y install php5.6 php5.6-cli php5.6-fpm php5.6-mysql php5.6-gd php5
 #####  #####
 sudo apt-get install -y nginx git vim zip htop wget
 sudo apt-get install -y build-essential
+sudo apt-get install debian-goodies  # dpigs -H
 
 # 安装 composer
 echo "----> start installing composer ..."
