@@ -1,7 +1,10 @@
+#
 sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
 sudo apt-add-repository ppa:nginx/stable -y
-sudo apt-get -y update && sudo apt-get -y upgrade
+sudo add-apt-repository ppa:ondrej/mysql-5.6 -y
 
+#
+sudo apt-get -y update && sudo apt-get -y upgrade
 
 #
 sudo apt-get install -y nginx
@@ -17,7 +20,7 @@ sudo curl -sS https://getcomposer.org/installer | sudo php
 sudo mv composer.phar /usr/bin/composer
 sudo rm -f composer.phar 
 
-# 安装 mysql5.6
+# 安装 mysql5.6 
 echo "----> start installing mysql5.6 ..."
 sudo apt-get -y install debconf-utils
 sudo debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password MYSQL_20170324_!@#'  # 设置mysql的root密码！！
