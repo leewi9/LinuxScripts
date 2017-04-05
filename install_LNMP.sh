@@ -21,6 +21,7 @@ sudo mv composer.phar /usr/bin/composer
 sudo rm -f composer.phar 
 
 # 安装 mysql5.6 
+# 要先设置PPA，原版的存在bug，http://askubuntu.com/questions/690855/mysql-5-6-dpkg-install-error-even-after-complete-uninstall
 echo "----> start installing mysql5.6 ..."
 sudo apt-get -y install debconf-utils
 sudo debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password MYSQL_20170324_!@#'  # 设置mysql的root密码！！
