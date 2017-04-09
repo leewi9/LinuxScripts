@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #
-sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
-sudo apt-add-repository ppa:nginx/stable -y
-sudo add-apt-repository ppa:ondrej/mysql-5.6 -y
+sudo LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
+sudo apt-add-repository -y ppa:nginx/stable
+sudo add-apt-repository -y ppa:ondrej/mysql-5.6
 
 #
 sudo apt-get -y update && sudo apt-get -y upgrade
