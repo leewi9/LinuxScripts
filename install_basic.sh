@@ -24,7 +24,7 @@ sudo apt-get -y update && sudo apt-get -y upgrade
 #####  #####
 sudo apt-get install -y git vim zip htop wget
 sudo apt-get install -y build-essential
-sudo apt-get install debian-goodies  # dpigs -H
+sudo apt-get install -y debian-goodies  # dpigs -H
 
 ##### 处理vim配置文件 #####
 if [ -s "$HOME/.vim/bundle/Vundle.vim" ]
