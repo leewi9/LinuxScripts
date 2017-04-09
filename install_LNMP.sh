@@ -3,7 +3,6 @@
 #
 sudo LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 sudo apt-add-repository -y ppa:nginx/stable
-sudo add-apt-repository -y ppa:ondrej/mysql-5.6
 
 #
 sudo apt-get -y update && sudo apt-get -y upgrade
@@ -23,7 +22,9 @@ sudo mv composer.phar /usr/bin/composer
 sudo rm -f composer.phar 
 
 # 安装 mysql5.6 
-# 要先设置PPA，原版的存在bug，http://askubuntu.com/questions/690855/mysql-5-6-dpkg-install-error-even-after-complete-uninstall
+# 网上有说用这个ppa:ondrej/mysql-5.6，不要用！！
+# sudo add-apt-repository -y ppa:ondrej/mysql-5.6  # Don't use, it's broken.!!!
+# http://askubuntu.com/questions/690855/mysql-5-6-dpkg-install-error-even-after-complete-uninstall
 # 注意在vagrant中至少要分配1024内存，否则无法启动 failed to start
 echo "----> start installing mysql5.6 ..."
 sudo apt-get -y install debconf-utils
