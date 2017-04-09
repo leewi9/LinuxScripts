@@ -47,7 +47,8 @@ fi
 
 ln -s "$PWD/.vimrc" "$HOME/"
 
-sudo vim -c "PluginInstall" -c "q" -c "q" > /dev/tty  # http://stackoverflow.com/questions/29042648/vim-warning-output-not-to-a-terminal
+sudo vim -c "PluginInstall" -c "q" -c "q" > /dev/null 
+#/dev/tty  # http://stackoverflow.com/questions/29042648/vim-warning-output-not-to-a-terminal
 
 ##### 处理用户配置文件 #####
 cat "$PWD/.bashrc_add" >> "$HOME/.bashrc"   # TODO 避免多次执行
