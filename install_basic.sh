@@ -22,7 +22,7 @@ sudo update-locale LC_ALL="en_US.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US:en"
 sudo apt-get -y update && sudo apt-get -y upgrade
 
 #####  #####
-sudo apt-get install -y git vim zip htop wget
+sudo apt-get install -y git vim zip htop wget tree
 sudo apt-get install -y supervisor
 sudo apt-get install -y build-essential
 sudo apt-get install -y debian-goodies  # dpigs -H
