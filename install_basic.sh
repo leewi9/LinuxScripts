@@ -22,9 +22,12 @@ sudo update-locale LC_ALL="en_US.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US:en"
 sudo apt-get -y update && sudo apt-get -y upgrade
 
 #####  #####
+# 开发环境
+sudo apt-get install -y binutils build-essential ant gawk
+
+# 工具
 sudo apt-get install -y git vim zip htop wget tree
 sudo apt-get install -y supervisor
-sudo apt-get install -y build-essential
 sudo apt-get install -y debian-goodies  # dpigs -H
 
 ##### 处理vim配置文件 #####
