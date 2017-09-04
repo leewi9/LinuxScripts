@@ -28,6 +28,6 @@ sudo rm -f composer.phar
 # 注意在vagrant中至少要分配1024内存，否则无法启动 failed to start
 echo "----> start installing mysql5.6 ..."
 sudo apt-get -y install debconf-utils
-sudo debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password MYSQL_20170324_!@#'  # 设置mysql的root密码！！
-sudo debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password MYSQL_20170324_!@#'
+sudo debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password password 123456'  # 设置mysql的root密码！！
+sudo debconf-set-selections <<< 'mysql-server-5.6 mysql-server/root_password_again password 123456'
 sudo apt-get -y install mysql-server-5.6 mysql-client-5.6
