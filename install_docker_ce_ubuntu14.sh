@@ -18,7 +18,7 @@ sudo apt-get update
 sudo apt-get install docker-ce
 
 #
-sudo usermod -a -G docker  
+sudo usermod -a -G docker  $USER
 
 # 要logout才会生效
 
