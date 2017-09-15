@@ -1,0 +1,21 @@
+#安装SS
+pip install git+https://github.com/shadowsocks/shadowsocks.git@master
+vim /etc/shadowsocks.json
+
+{
+    "server":"",
+    "server_port":111,
+    "password":"",
+    "timeout":600,
+    "method":"rc4-md5",
+    "auth": true
+}
+
+/usr/bin/python /usr/local/bin/ssserver -c /etc/shadowsocks.json -d start
+
+
+# 安装SSR
+cd ~/_A_TOOLS
+
+git clone https://github.com/teddysun/shadowsocks_install.git
+
