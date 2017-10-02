@@ -24,3 +24,8 @@ sudo usermod -a -G docker  $USER
 
 # 安装 phpmyadmin
 # docker run --name myadmin -d -e PMA_ARBITRARY=1 -p 8080:80 phpmyadmin/phpmyadmin
+
+
+# 安装 docker-compose
+sudo apt-get -y install python-pip
+sudo pip install docker-compose
