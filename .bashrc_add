@@ -26,8 +26,9 @@ BWhite="\[\033[1;37m\]"       # White
 UNDERLINE="\[\033[4m\]"
 DEFAULT="\[\033[0m\]"
 
-# 这里用$(echo $PWD)，还可以用\w \W，后者会用~代替$HOME
-export PS1="\n$BBlue[\h] $BBlue\t $BBlue\u No.$BBlue\# -> $BBlue$(echo $PWD)$Color_Off\n\$ "
+# 这里用$(echo $PWD)，貌似还有有问题？
+# 还可以用\w \W，后者会用~代替$HOME
+export PS1="\n$BBlue[\h] $BBlue\t $BBlue\u No.$BBlue\# -> $BBlue\w$Color_Off\n\$ "
 
 # echo 可能会导致 sftp 登录出错！！ Received message too long
 echo "/home/$USER/.bashrc"
