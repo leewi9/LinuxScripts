@@ -13,19 +13,33 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins call vundle#begin('~/some/path/here')
 
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 
+Plugin 'Tagbar'
+nmap <Ctrl+t> :TagbarToggle<CR>
+" 启动时自动focus
+let g:tagbar_autofocus = 1
+" for ruby, delete if you do not need
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
+
 Plugin 'c.vim'
 
-" Plugin 'taglist.vim'
-
-Plugin 'Tagbar'
-nmap <F8> :TagbarToggle<CR>
-
 Plugin 'Syntastic'
+
+
 
 " " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
