@@ -1,6 +1,9 @@
 " Vim配置文件
 " ~/.vimrc
 
+set exrc
+set secure
+
 " Vundle.vim 相关配置
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -60,31 +63,25 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
 
-"
 syntax on
-
-"
 set nonu
-
 set paste
 
 " set smartindent     " autoindent、noautoindent
-
 
 set tabstop=4       " The width of a TAB is set to 4.
                     " Still it is a \t. It is just that
                     " Vim will interpret it to be having
                     " a width of 4.
-
+                    
 set shiftwidth=4    " Indents will have a width of 4
-
 set softtabstop=4   " Sets the number of columns for a TAB
-
 set expandtab       " Expand TABs to spaces
 
+set colorcolumn=110
+highlight ColorColumn ctermbg=darkgray
 
-" 括号自动补全（加在vim配置文件末尾，但是似乎在大段拷贝时会产生很多多余的！！？？？ ）
-" inoremap ( ()<ESC>i
-" inoremap [ []<ESC>i
-" inoremap { {}<ESC>i
-" inoremap < <><ESC>i
+augroup project
+    autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+augroup END
