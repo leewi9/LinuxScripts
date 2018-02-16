@@ -1,7 +1,7 @@
 1、don't run as root
 
-2、dont't run by `sh install.sh`  
-`./install.sh`  
+2、don't run by `sh install.sh`  
+run by `./install.sh`  
   
 https://stackoverflow.com/questions/670191/getting-a-source-not-found-error-when-using-source-in-a-bash-script  
   
