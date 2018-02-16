@@ -19,8 +19,11 @@ sudo apt-get install docker-ce
 
 #
 sudo usermod -a -G docker  $USER
-
 # 要logout才会生效
+
+#
+echo "DOCKER_OPTS=\"--registry-mirror=https://2h3po24q.mirror.aliyuncs.com\"" | sudo tee -a /etc/default/docker
+sudo service docker restart
 
 # 安装 phpmyadmin
 # docker run --name myadmin -d -e PMA_ARBITRARY=1 -p 8080:80 phpmyadmin/phpmyadmin

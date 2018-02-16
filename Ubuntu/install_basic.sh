@@ -3,6 +3,10 @@
 echo "-----> $HOME"
 echo "-----> $PWD"
 
+# 配置源
+# sudo sed -i 's#http://archive.ubuntu.com#http://cn.archive.ubuntu.com#g' /etc/apt/sources.list
+# sudo apt-get -y update
+
 # 设置时区
 sudo timedatectl set-timezone Asia/Shanghai
 
@@ -38,6 +42,5 @@ sudo apt-get autoremove -y
 
 # TODO System Restart Required
 # sudo reboot
-
 
 # TODO 验证要安装的是否确实都已经正确安装
