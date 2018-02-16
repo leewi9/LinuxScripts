@@ -30,34 +30,6 @@ sudo apt-get install -y git vim zip htop wget tree
 sudo apt-get install -y supervisor
 sudo apt-get install -y debian-goodies  # dpigs -H
 
-##### 处理vim配置文件 #####
-if [ -s "$HOME/.vim/bundle/Vundle.vim" ]
-then
-    #echo "Vundle already set!"
-    echo
-else
-    git clone "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vundle.vim"
-fi
-
-if [ -s "$HOME/.vimrc" ]
-then
-    #echo "$file already exists!"
-    mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
-    rm -f "$HOME/.vimrc"
-else
-    #echo "$file not found, create link..."
-    echo
-fi
-
-ln -s "$PWD/.vimrc" "$HOME/"
-
-sudo vim -c "PluginInstall" -c "q" -c "q" > /dev/null 
-#/dev/tty  # http://stackoverflow.com/questions/29042648/vim-warning-output-not-to-a-terminal
-
-##### 处理用户配置文件 #####
-cat "$PWD/.bashrc_add" >> "$HOME/.bashrc"   # TODO 避免多次执行
-source "$HOME/.bashrc"
-
 #####
 sudo apt-get -y upgrade
 
