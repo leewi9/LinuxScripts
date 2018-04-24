@@ -10,7 +10,11 @@
 #
 #   Use this script at your OWN risk. There is no guarantee whatsoever.
 
+###############################################################
 # You can run it with “sh sysctl-config.sh” or if your server is ssd/highmem you could try “sh sysctl-config.sh ssd”.
+# execute
+# /sbin/sysctl -p /etc/sysctl.conf
+###############################################################
 
 host=$(hostname)
 
@@ -156,6 +160,3 @@ kernel.shmmax = $shmmax
 # Maximum number of shared memory segments in pages
 kernel.shmall = $shmall
 EOF
-
-# execute
-# /sbin/sysctl -p /etc/sysctl.conf
