@@ -49,9 +49,7 @@ else
     vm_dirty_ratio=5
 fi
 
-# 
-mv /etc/sysctl.conf /etc/sysctl.conf.bak
-
+#
 >/etc/sysctl.conf cat << EOF 
 
 ############################### net ################################
