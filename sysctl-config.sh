@@ -13,6 +13,7 @@
 ###############################################################
 # 1、backup
 # mv /etc/sysctl.conf /etc/sysctl.conf.bak
+# vim /etc/sysctl.conf
 # 2、run
 # You can run it with “sh sysctl-config.sh” or if your server is ssd/highmem you could try “sh sysctl-config.sh ssd”.
 # 3、take effect
