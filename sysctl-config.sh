@@ -11,8 +11,11 @@
 #   Use this script at your OWN risk. There is no guarantee whatsoever.
 
 ###############################################################
+# 1、backup
+# mv /etc/sysctl.conf /etc/sysctl.conf.bak
+# 2、run
 # You can run it with “sh sysctl-config.sh” or if your server is ssd/highmem you could try “sh sysctl-config.sh ssd”.
-# execute
+# 3、take effect
 # /sbin/sysctl -p /etc/sysctl.conf
 ###############################################################
 
