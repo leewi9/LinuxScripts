@@ -75,7 +75,11 @@ net.ipv4.conf.all.log_martians = 1
 
 # Minimum interval between garbage collection passes This interval is
 # in effect under high memory pressure on the pool
-net.ipv4.inet_peer_gc_mintime = 5
+# net.ipv4.inet_peer_gc_mintime = 5
+# TODO
+# net.ipv4.inet_peer_maxttl
+# net.ipv4.inet_peer_minttl
+# net.ipv4.inet_peer_threshold
 
 # Disable Explicit Congestion Notification in TCP
 net.ipv4.tcp_ecn = 0
@@ -102,7 +106,9 @@ net.ipv4.ip_forward = 0
 net.ipv4.conf.default.rp_filter = 0
 
 # Enable fast recycling TIME-WAIT sockets
-net.ipv4.tcp_tw_recycle = 1
+# net.ipv4.tcp_tw_recycle = 1
+# https://stackoverflow.com/questions/6426253/tcp-tw-reuse-vs-tcp-tw-recycle-which-to-use-or-both
+net.ipv4.tcp_tw_reuse = 1
 
 # TODO : change TCP_SYNQ_HSIZE in include/net/tcp.h
 # to keep TCP_SYNQ_HSIZE*16<=tcp_max_syn_backlog
