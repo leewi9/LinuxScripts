@@ -50,6 +50,8 @@ mv /etc/sysctl.conf /etc/sysctl.conf.bak
 
 >/etc/sysctl.conf cat < < EOF 
 
+############################### net ################################
+
 # Disable syncookies (syncookies are not RFC compliant and can use too muche resources)
 net.ipv4.tcp_syncookies = 0
 
@@ -125,12 +127,20 @@ net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_rmem = 4096 87380 16777216
 net.ipv4.tcp_wmem = 4096 65536 16777216
 
+# 开启BBR
+net.ipv4.tcp_congestion_control=bbr
+
 # increase TCP max buffer size
 net.core.rmem_max = 16777216
 net.core.wmem_max = 16777216
 
 net.core.netdev_max_backlog = 2500
 net.core.somaxconn = 65000
+
+# The default network queuing discipline should avoid buffer bloat – which destroys latency. net.core.default_qdisc sets the default queuing mechanism for Linux networking. It has very significant effects on network performance and latency. sch_fq_codel is the current best queuing discipline for performance and latency on Linux machines.
+net.core.default_qdisc=fq
+
+############################### vm ################################
 
 vm.swappiness = 0
 
@@ -142,11 +152,15 @@ vm.dirty_ratio = $vm_dirty_ratio
 # required free memory (set to 1% of physical ram)
 vm.min_free_kbytes = $min_free
 
+############################### fs ################################
+
 # system open file limit
 fs.file-max = $file_max
 
 # Core dump suidsafe
 fs.suid_dumpable = 2 
+
+############################### kernel ################################
 
 kernel.printk = 4 4 1 7
 kernel.core_uses_pid = 1
@@ -159,4 +173,5 @@ kernel.shmmax = $shmmax
 
 # Maximum number of shared memory segments in pages
 kernel.shmall = $shmall
+
 EOF
