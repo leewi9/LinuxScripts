@@ -9,16 +9,8 @@
 #   and adapt the parameters to your needs and application usage.
 #
 #   Use this script at your OWN risk. There is no guarantee whatsoever.
-#
-# License :
-#   This work is licenced under the CC-GNU LGPL version 2.1 or later.
-#   To view a copy of this licence, visit http://creativecommons.org/licenses/LGPL/2.1/
-#   or send a letter to :
-#
-#           Creative Commons
-#           171 Second Street, Suite 300
-#           San Francisco, California 94105, USA
-#
+
+# You can run it with “sh sysctl-config.sh” or if your server is ssd/highmem you could try “sh sysctl-config.sh ssd”.
 
 host=$(hostname)
 
