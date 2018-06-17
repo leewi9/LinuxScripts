@@ -4,7 +4,7 @@ cd system/
 cd ../shell/bash/
 ./install_bash.sh
 
-cd ../Ubuntu/
+cd ../../Ubuntu/
 ./install_basic.sh
 
 cd ../vim/
