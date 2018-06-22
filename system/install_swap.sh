@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo dd if=/dev/zero of=/swapfile count=2048 bs=1M  # create a 2GB swap file
+sudo dd if=/dev/zero of=/swapfile count=4096 bs=1M  # create a 4GB swap file
 
 # verify that the file is located at the root of your Vultr VPS by running:
 ls / | grep swapfile
