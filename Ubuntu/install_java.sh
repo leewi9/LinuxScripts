@@ -15,7 +15,7 @@ sudo apt-get update
 
 sudo apt-cache search all | grep oracle
 
-sudo apt-get install oracle-java9-installer
+sudo apt-get install oracle-java8-installer
 
 # 查看版本
 # java -version
