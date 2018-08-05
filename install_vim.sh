@@ -17,7 +17,7 @@ else
     echo
 fi
 
-ln -s "$PWD/.vimrc" "$HOME/"
+ln -s "$PWD/install_vimrc" "$HOME/"
 
 sudo vim -c "PluginInstall" -c "q" -c "q" > /dev/null 
 #/dev/tty  # http://stackoverflow.com/questions/29042648/vim-warning-output-not-to-a-terminal
