@@ -7,20 +7,21 @@ echo "-----> $PWD"
 # sudo sed -i 's#http://archive.ubuntu.com#http://cn.archive.ubuntu.com#g' /etc/apt/sources.list
 # sudo apt-get -y update
 
-# 设置时区
-sudo timedatectl set-timezone Asia/Shanghai
-
 # 设置 locale
-# 解决远程服务器的语言编码与终端的编码不一致
-# Centos系统还需要安装中文语言包  yum -y groupinstall chinese-support
-# 如果SSH终端还是乱码，那么我们也需要对终端软件的编码进行设置。设置编码为UTF-8。
-# 如果不正确设置这些，在安装postgresql时貌似会报错
 sudo locale-gen en_US.UTF-8
 # echo 'LC_ALL="en_US.UTF-8"' | sudo tee --append /etc/default/locale > /dev/null
 # echo 'LANG="en_US.UTF-8"' | sudo tee --append /etc/default/locale > /dev/null
 # echo 'LANGUAGE="en_US:en"' | sudo tee --append /etc/default/locale > /dev/null
 # 上面3句可以用下面来实现
 sudo update-locale LC_ALL="en_US.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US:en"
+
+# 设置时区
+sudo timedatectl set-timezone Asia/Shanghai
+
+# 同步时间
+apt install ntp -y
+apt install ntpdate -y
+ntpdate -u time.pool.aliyun.com
 
 #
 sudo apt-get -y update && sudo apt-get -y upgrade
