@@ -19,14 +19,11 @@ sudo update-locale LC_ALL="en_US.UTF-8" LANG="en_US.UTF-8" LANGUAGE="en_US:en"
 sudo timedatectl set-timezone Asia/Shanghai
 
 # 同步时间
+sudo apt-get -y update && sudo apt-get -y upgrade
 apt install ntp -y
 apt install ntpdate -y
 ntpdate -u time.pool.aliyun.com
 
-#
-sudo apt-get -y update && sudo apt-get -y upgrade
-
-#####  #####
 # 开发环境
 sudo apt-get install -y binutils build-essential ant gawk
 
@@ -38,7 +35,7 @@ sudo apt-get install -y debian-goodies  # dpigs -H
 #
 sudo apt-get install -y sysstat
 
-#####
+#
 sudo apt-get -y upgrade
 
 #
