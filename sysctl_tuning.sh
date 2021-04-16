@@ -34,6 +34,27 @@ mv /etc/sysctl.conf /etc/sysctl.conf.bak
 ###############################################################
 
 #
+which bc
+if [ $? -ne 0 ]; then
+    echo "This script require GNU bc, cf. http://www.gnu.org/software/bc/"
+    echo "On Linux Debian/Ubuntu you can install it by doing : apt-get install bc"
+fi
+
+#
+host=$(hostname)
+ARCH=$(uname -m)
+echo "Update sysctl for $host"
+
+#
+mem_bytes=$(awk '/MemTotal:/ { printf "%0.f",$2 * 1024}' /proc/meminfo)
+shmmax=$(echo "$mem_bytes * 0.90" | bc | cut -f 1 -d '.')
+shmall=$(expr $mem_bytes / $(getconf PAGE_SIZE))
+max_orphan=$(echo "$mem_bytes * 0.10 / 65536" | bc | cut -f 1 -d '.')
+file_max=$(echo "$mem_bytes / 4194304 * 256" | bc | cut -f 1 -d '.')
+max_tw=$(($file_max*2))
+min_free=$(echo "($mem_bytes / 1024) * 0.01" | bc | cut -f 1 -d '.')
+
+#
 >/etc/sysctl.conf cat << EOF 
 
 ###
