@@ -16,3 +16,5 @@ echo '* hard nproc 102400' >> /etc/security/limits.conf
 
 # 在 /etc/pam.d/common-session 文件中添加下面内容：
 # session required pam_limits.so
+
+# reboot
