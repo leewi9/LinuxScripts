@@ -49,7 +49,7 @@ echo "Update sysctl for $host"
 mem_bytes=$(awk '/MemTotal:/ { printf "%0.f",$2 * 1024}' /proc/meminfo)
 shmmax=$(echo "$mem_bytes * 0.90" | bc | cut -f 1 -d '.')
 shmall=$(expr $mem_bytes / $(getconf PAGE_SIZE))
-max_orphan=$(echo "$mem_bytes * 0.10 / 65536" | bc | cut -f 1 -d '.')
+tcp_max_orphans=$(echo "$mem_bytes * 0.10 / 65536" | bc | cut -f 1 -d '.')
 file_max=$(echo "$mem_bytes / 4194304 * 256" | bc | cut -f 1 -d '.')
 max_tw=$(($file_max*2))
 min_free=$(echo "($mem_bytes / 1024) * 0.10" | bc | cut -f 1 -d '.')
@@ -73,10 +73,10 @@ kernel.pid_max = 65535
 
 # The contents of /proc/<pid>/maps and smaps files are only visible to
 # readers that are allowed to ptrace() the process
-kernel.maps_protect = 1
+# kernel.maps_protect = 1  # todo
 
-#Enable ExecShield protection
-kernel.exec-shield = 1
+# Enable ExecShield protection
+# kernel.exec-shield = 1 # todo
 kernel.randomize_va_space = 2
 
 # Controls the maximum size of a message, in bytes
@@ -273,14 +273,13 @@ net.core.optmem_max = 65535
 net.ipv4.tcp_max_tw_buckets = $max_tw
 
 # try to reuse time-wait connections, but don't recycle them (recycle can break clients behind NAT)
-net.ipv4.tcp_tw_recycle = 0
+# net.ipv4.tcp_tw_recycle = 0 # 已被废弃？
 net.ipv4.tcp_tw_reuse = 1
 # Enable fast recycling TIME-WAIT sockets
 # https://stackoverflow.com/questions/6426253/tcp-tw-reuse-vs-tcp-tw-recycle-which-to-use-or-both
 
 # Limit number of orphans, each orphan can eat up to 16M (max wmem) of unswappable memory
-max_orphan=$(echo "$mem_bytes * 0.10 / 65536" | bc | cut -f 1 -d '.')
-net.ipv4.tcp_max_orphans = $max_orphan
+net.ipv4.tcp_max_orphans = $tcp_max_orphans
 # How may times to retry before killing TCP connection, closed by our side
 net.ipv4.tcp_orphan_retries = 1
 
