@@ -13,7 +13,7 @@
 # 1、backup
 mv /etc/sysctl.conf /etc/sysctl.conf.bak
 # 2、run
-mv v1.conf /etc/sysctl.conf
+copy v1.conf /etc/sysctl.conf
 # 3、take effect
 /sbin/sysctl -p /etc/sysctl.conf
 ###############################################################
