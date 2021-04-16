@@ -52,7 +52,7 @@ shmall=$(expr $mem_bytes / $(getconf PAGE_SIZE))
 max_orphan=$(echo "$mem_bytes * 0.10 / 65536" | bc | cut -f 1 -d '.')
 file_max=$(echo "$mem_bytes / 4194304 * 256" | bc | cut -f 1 -d '.')
 max_tw=$(($file_max*2))
-min_free=$(echo "($mem_bytes / 1024) * 0.01" | bc | cut -f 1 -d '.')
+min_free=$(echo "($mem_bytes / 1024) * 0.10" | bc | cut -f 1 -d '.')
 
 #
 >/etc/sysctl.conf cat << EOF 
