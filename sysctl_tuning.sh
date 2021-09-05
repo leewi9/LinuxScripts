@@ -237,8 +237,8 @@ net.ipv6.conf.eth0.accept_ra=0
 # Fall-back to htcp if bbr is unavailable (older kernels)
 net.ipv4.tcp_notsent_lowat = 16384
 # net.ipv4.tcp_congestion_control = htcp
-# net.ipv4.tcp_congestion_control = bbr
-net.ipv4.tcp_congestion_control=bbrplus
+net.ipv4.tcp_congestion_control = bbr
+# net.ipv4.tcp_congestion_control=bbrplus
 
 # For servers with tcp-heavy workloads, enable 'fq' queue management scheduler (kernel > 3.12)
 net.core.default_qdisc = fq
