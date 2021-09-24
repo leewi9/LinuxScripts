@@ -332,6 +332,10 @@ net.ipv4.tcp_fastopen = 3
 net.ipv4.route.flush = 1
 net.ipv6.route.flush = 1
 
+# disable/enable ipv6
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+
 EOF
 
 # 3、take effect
