@@ -241,7 +241,7 @@ net.ipv4.udp_wmem_min = 16384
 
 # Increase the tcp-time-wait buckets pool size to prevent simple DOS attacks
 net.ipv4.tcp_max_tw_buckets = $max_tw
-net.ipv4.tcp_tw_recycle = 1
+# net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
 
 # Turn on the tcp_window_scaling
