@@ -1,51 +1,35 @@
 #!/bin/bash
-#
-# Author : Nicolas Brousse
-#
-# Notes :
-#   This script is a simple "helper" to configure your sysctl.conf on linux
-#   There is no silver bullet. Don't expect the perfect setup, review comments
-#   and adapt the parameters to your needs and application usage.
-#
-#   Use this script at your OWN risk. There is no guarantee whatsoever.
-
-
-# 验证当前TCP控制算法的命令
-# sysctl net.ipv4.tcp_available_congestion_control
-# 返回值一般为：
-# net.ipv4.tcp_available_congestion_control = bbr cubic reno
-# 或者为：
-# net.ipv4.tcp_available_congestion_control = reno cubic bbr
-
-# 验证BBR是否已经启动
-# sysctl net.ipv4.tcp_congestion_control 
-# 返回值一般为：
-# net.ipv4.tcp_congestion_control = bbr
-
-# lsmod | grep bbr 
-# 返回值有 tcp_bbr 模块即说明 bbr 已启动
-# 注意：并不是所有的 VPS 都会有此返回值，若没有也属正常
-
 
 ###############################################################
 # 1、backup
 mv /etc/sysctl.conf /etc/sysctl.conf.bak
+mv /etc/security/limits.conf /etc/security/limits.conf.bak
+###############################################################
+
+###############################################################
 # 2、run
 ###############################################################
 
-#
+>/etc/security/limits.conf cat << EOF 
+
+* soft nofile 102400
+* hard nofile 102400
+* soft nproc 102400
+* hard nproc 102400
+
+EOF
+
+
 which bc
 if [ $? -ne 0 ]; then
     echo "This script require GNU bc, cf. http://www.gnu.org/software/bc/"
     echo "On Linux Debian/Ubuntu you can install it by doing : apt-get install bc"
 fi
 
-#
 host=$(hostname)
 ARCH=$(uname -m)
 echo "Update sysctl for $host"
 
-#
 mem_bytes=$(awk '/MemTotal:/ { printf "%0.f",$2 * 1024}' /proc/meminfo)
 shmmax=$(echo "$mem_bytes * 0.90" | bc | cut -f 1 -d '.')
 shmall=$(expr $mem_bytes / $(getconf PAGE_SIZE))
@@ -54,12 +38,9 @@ file_max=$(echo "$mem_bytes / 4194304 * 256" | bc | cut -f 1 -d '.')
 max_tw=$(($file_max*2))
 min_free=$(echo "($mem_bytes / 1024) * 0.10" | bc | cut -f 1 -d '.')
 
-#
 >/etc/sysctl.conf cat << EOF 
 
-###
 ### GENERAL SYSTEM SECURITY OPTIONS ###
-###
 
 # Controls the System Request debugging functionality of the kernel
 kernel.sysrq = 0
@@ -68,7 +49,7 @@ kernel.sysrq = 0
 # Useful for debugging multi-threaded applications.
 kernel.core_uses_pid = 1
 
-#Allow for more PIDs
+# Allow for more PIDs
 kernel.pid_max = 65535
 
 # The contents of /proc/<pid>/maps and smaps files are only visible to
@@ -92,10 +73,7 @@ fs.suid_dumpable = 0
 kernel.kptr_restrict = 1
 
 
-
-###
 ### IMPROVE SYSTEM MEMORY MANAGEMENT ###
-###
 
 # Increase size of file handles and inode cache
 # fs.file-max = 209708
@@ -131,9 +109,7 @@ kernel.shmall = $shmall
 vm.min_free_kbytes = $min_free
 
 
-###
 ### GENERAL NETWORK SECURITY OPTIONS ###
-###
 
 #Prevent SYN attack, enable SYNcookies (they will kick-in when the max_syn_backlog reached)
 # but syncookies are not RFC compliant and can use too muche resources
@@ -227,56 +203,49 @@ net.ipv6.conf.eth0.autoconf=0
 net.ipv6.conf.eth0.accept_ra=0
 
 
-
-###
 ### TUNING NETWORK PERFORMANCE ###
-###
 
-# Use BBR TCP congestion control and set tcp_notsent_lowat to 16384 to ensure HTTP/2 prioritization works optimally
-# Do a 'modprobe tcp_bbr' first (kernel > 4.9)
-# Fall-back to htcp if bbr is unavailable (older kernels)
-net.ipv4.tcp_notsent_lowat = 16384
-# net.ipv4.tcp_congestion_control = htcp
-net.ipv4.tcp_congestion_control = bbr
-# net.ipv4.tcp_congestion_control=bbrplus
+# Default Socket Receive Buffer
+net.core.rmem_default = 31457280
 
-# For servers with tcp-heavy workloads, enable 'fq' queue management scheduler (kernel > 3.12)
-net.core.default_qdisc = fq
-# The default network queuing discipline should avoid buffer bloat – which destroys latency. net.core.default_qdisc sets the default queuing mechanism for Linux networking. It has very significant effects on network performance and latency. sch_fq_codel is the current best queuing discipline for performance and latency on Linux machines.
+# Maximum Socket Receive Buffer
+net.core.rmem_max = 12582912
 
-# Turn on the tcp_window_scaling
-net.ipv4.tcp_window_scaling = 1
+# Default Socket Send Buffer
+net.core.wmem_default = 31457280
+
+# Maximum Socket Send Buffer
+net.core.wmem_max = 12582912
+
+# Increase number of incoming connections
+net.core.somaxconn = 4096
+
+# Increase number of incoming connections backlog
+net.core.netdev_max_backlog = 65536
+
+# Increase the maximum amount of option memory buffers
+net.core.optmem_max = 25165824
+
+# Increase the maximum total buffer-space allocatable
+# This is measured in units of pages (4096 bytes)
+net.ipv4.tcp_mem = 65536 131072 262144
+net.ipv4.udp_mem = 65536 131072 262144
 
 # Increase the read-buffer space allocatable
 net.ipv4.tcp_rmem = 8192 87380 16777216
 net.ipv4.udp_rmem_min = 16384
-net.core.rmem_default = 262144
-net.core.rmem_max = 16777216
 
 # Increase the write-buffer-space allocatable
 net.ipv4.tcp_wmem = 8192 65536 16777216
 net.ipv4.udp_wmem_min = 16384
-net.core.wmem_default = 262144
-net.core.wmem_max = 16777216
-
-# Increase number of incoming connections
-net.core.somaxconn = 65536
-
-# Increase number of incoming connections backlog
-net.core.netdev_max_backlog = 16384
-net.core.dev_weight = 64
-
-# Increase the maximum amount of option memory buffers
-net.core.optmem_max = 65535
 
 # Increase the tcp-time-wait buckets pool size to prevent simple DOS attacks
 net.ipv4.tcp_max_tw_buckets = $max_tw
-
-# try to reuse time-wait connections, but don't recycle them (recycle can break clients behind NAT)
-# net.ipv4.tcp_tw_recycle = 0 # 已被废弃？
+net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
-# Enable fast recycling TIME-WAIT sockets
-# https://stackoverflow.com/questions/6426253/tcp-tw-reuse-vs-tcp-tw-recycle-which-to-use-or-both
+
+# Turn on the tcp_window_scaling
+net.ipv4.tcp_window_scaling = 1
 
 # Limit number of orphans, each orphan can eat up to 16M (max wmem) of unswappable memory
 net.ipv4.tcp_max_orphans = $tcp_max_orphans
@@ -338,5 +307,9 @@ net.ipv6.route.flush = 1
 
 EOF
 
+###############################################################
 # 3、take effect
 /sbin/sysctl -p /etc/sysctl.conf
+# reboot
+###############################################################
+
