@@ -31,14 +31,8 @@ sudo apt-get install -y binutils build-essential ant gawk
 sudo apt-get install -y git vim zip htop wget tree
 sudo apt-get install -y supervisor
 sudo apt-get install -y debian-goodies  # dpigs -H
-
-#
 sudo apt-get install -y sysstat
-
-#
 sudo apt-get -y upgrade
-
-#
 sudo apt-get autoremove -y
 
 # TODO System Restart Required
