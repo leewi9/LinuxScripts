@@ -62,6 +62,12 @@ kernel.shmall = $shmall
 # vm.min_free_kbytes = 65535
 vm.min_free_kbytes = $min_free
 
+### IMPROVE UDP ###
+net.core.rmem_default = 67108864  # 64MB
+net.core.rmem_max = 67108864  # 64MB
+net.core.wmem_default = 67108864  # 64MB
+net.core.wmem_max = 67108864  # 64MB
+
 
 EOF
 
