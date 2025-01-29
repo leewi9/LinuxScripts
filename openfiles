@@ -12,3 +12,7 @@ DefaultLimitNOFILE=65536
 
 Add below configuraion in /etc/systemd/user.conf
 DefaultLimitNOFILE=65536
+
+# 貌似上面的没啥用
+vim /etc/systemd/system/hysteria-server.service
+LimitNOFILE=1024000
