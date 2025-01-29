@@ -1,0 +1,14 @@
+Run below commands for setting up soft limit and hard limit::
+
+Add below configuration in file /etc/security/limits.conf
+soft nofile 65536
+hard nofile 65536
+
+Add below configuration in /etc/sysctl.conf
+fs.file-max = 65536
+
+Add below configuraion in /etc/systemd/system.conf
+DefaultLimitNOFILE=65536
+
+Add below configuraion in /etc/systemd/user.conf
+DefaultLimitNOFILE=65536
