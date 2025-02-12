@@ -1,0 +1,3 @@
+pyenv install python 
+
+sudo apt-get install -y bzip2 libreadline6 libreadline6-dev openssl make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
