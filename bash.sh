@@ -77,6 +77,8 @@ alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Additional aliases from alias.sh
+alias h='history'
 alias hg='history | grep '
 alias pg='ps -ef | grep '
 
@@ -89,6 +91,7 @@ if ! grep -q "# Custom Bash configurations" ~/.bashrc; then
         echo "alias ll='ls -alFh'"
         echo "alias la='ls -A'"
         echo "alias l='ls -CF'"
+        echo "alias h='history'"
         echo "alias hg='history | grep '"
         echo "alias pg='ps -ef | grep '"
         echo "export Color_Off=\"\[\033[0m\]\""
