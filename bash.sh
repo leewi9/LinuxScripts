@@ -70,7 +70,9 @@ function git_branch {
 }
 
 # Set the prompt
-export PS1="\n$BBlue[\h] $BBlue\t $BBlue\u No.$BBlue\# -> $BBlue\$PWD$Color_Off \[\$(git_color)\]\$(git_branch) $Color_Off \n\$ "
+# export PS1="\n$BBlue[\h] $BBlue\t $BBlue\u No.$BBlue\# -> $BBlue\$PWD$Color_Off \[\$(git_color)\]\$(git_branch) $Color_Off \n\$ "
+# export PS1="\n$BBlue[\h] $BBlue\t $BBlue\u -> $BBlue\$PWD$Color_Off \[\$(git_color)\]\$(git_branch) $Color_Off \n\$ "
+export PS1="\n$BBlue[\h] $BBlue\t $BBlue\u -> $BBlue\\w$Color_Off \[\$(git_color)\]\$(git_branch) $Color_Off \n\$ "
 
 # Some more ls aliases
 alias ll='ls -alFh'
@@ -87,7 +89,32 @@ if ! grep -q "# Custom Bash configurations" ~/.bashrc; then
     # Append configurations to ~/.bashrc
     {
         echo "# Custom Bash configurations"
-        echo "export PS1=\"\n\$BBlue[\h] \$BBlue\t \$BBlue\u No.\$BBlue\# -> \$BBlue\$PWD\$Color_Off \[\$(git_color)\]\$(git_branch) \$Color_Off \n\$ \""
+        echo "function git_color {"
+        echo "  local git_status=\"\$(git status 2> /dev/null)\""
+        echo "  if [[ ! \$git_status =~ \"working directory clean\" ]]; then"
+        echo "    echo -e \$Red"
+        echo "  elif [[ \$git_status =~ \"Your branch is ahead of\" ]]; then"
+        echo "    echo -e \$Yellow"
+        echo "  elif [[ \$git_status =~ \"nothing to commit\" ]]; then"
+        echo "    echo -e \$Green"
+        echo "  else"
+        echo "    echo -e \$Ochre"
+        echo "  fi"
+        echo "}"
+        echo ""
+        echo "function git_branch {"
+        echo "  local git_status=\"\$(git status 2> /dev/null)\""
+        echo "  local on_branch=\"On branch ([^\${IFS}]*)\""
+        echo "  local on_commit=\"HEAD detached at ([^\${IFS}]*)\""
+        echo "  if [[ \$git_status =~ \$on_branch ]]; then"
+        echo "    local branch=\${BASH_REMATCH[1]}"
+        echo "    echo \"(\$branch)\""
+        echo "  elif [[ \$git_status =~ \$on_commit ]]; then"
+        echo "    local commit=\${BASH_REMATCH[1]}"
+        echo "    echo \"(\$commit)\""
+        echo "  fi"
+        echo "}"
+        echo "export PS1=\"\n\$BBlue[\h] \$BBlue\t \$BBlue\u -> \$BBlue\\w\$Color_Off \[\$(git_color)\]\$(git_branch) \$Color_Off \n\$ \""
         echo "alias ll='ls -alFh'"
         echo "alias la='ls -A'"
         echo "alias l='ls -CF'"
@@ -102,6 +129,15 @@ if ! grep -q "# Custom Bash configurations" ~/.bashrc; then
         echo "export Purple=\"\[\033[0;35m\]\""
         echo "export Cyan=\"\[\033[0;36m\]\""
         echo "export White=\"\[\033[0;37m\]\""
+        echo "export Ochre=\"\[\033[38;5;95m\]\""
+        echo "export BBlack=\"\[\033[1;30m\]\""
+        echo "export BRed=\"\[\033[1;31m\]\""
+        echo "export BGreen=\"\[\033[1;32m\]\""
+        echo "export BYellow=\"\[\033[1;33m\]\""
+        echo "export BBlue=\"\[\033[1;34m\]\""
+        echo "export BPurple=\"\[\033[1;35m\]\""
+        echo "export BCyan=\"\[\033[1;36m\]\""
+        echo "export BWhite=\"\[\033[1;37m\]\""
     } >> ~/.bashrc
     echo "Bash configurations added to ~/.bashrc."
 else
@@ -110,5 +146,7 @@ fi
 
 # Install essential Bash tools
 sudo apt-get install -y bash-completion 
+
+source ~/.bashrc
 
 echo "Bash environment setup completed. Please restart your terminal or run 'source ~/.bashrc' to apply changes." 
