@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Default swap size in MB if no parameter is provided
 SWAP_SIZE=${1:-512}
