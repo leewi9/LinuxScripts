@@ -31,7 +31,7 @@ install_dev_tools() {
 
 install_utilities() {
     echo "Installing utilities..."
-    sudo apt-get install -y git vim zip htop wget tree lrzsz cron
+    sudo apt-get install -y git vim zip htop wget tree lrzsz cron dnsutils
     sudo apt-get install -y supervisor
     sudo apt-get install -y debian-goodies  # dpigs -H
     sudo apt-get install -y sysstat
